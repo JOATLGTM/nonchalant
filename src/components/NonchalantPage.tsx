@@ -223,13 +223,15 @@ export function NonchalantPage() {
         .insert(row);
 
       if (error) {
+        console.error('[interest_signups insert] Supabase error:', error);
         setErrors({ general: 'Something went wrong. Please try again.' });
         setIsSubmitting(false);
         return;
       }
 
       goToConfirmation();
-    } catch {
+    } catch (err) {
+      console.error('[interest_signups insert] Unexpected error:', err);
       setErrors({ general: 'Something went wrong. Please try again.' });
       setIsSubmitting(false);
     }
